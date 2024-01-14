@@ -16,27 +16,29 @@ def addPath():
 
 
 def gitleaksInstall():
-    TARGETOS = platform.system()
-    TARGETARCH = platform.machine()
+    TARGETOS = platform.system().lower()
+    TARGETARCH = "x64"
     URL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.18.1/gitleaks_8.18.1_{TARGETOS}_{TARGETARCH}"
 
-    if TARGETOS == "Linux" or TARGETOS == "Darwin":
+
+    if TARGETOS == "linux" or TARGETOS == "darwin":
         os.system(f"curl -sSL {URL}.tar.gz -o gitleaks.tar.gz")
         os.system("tar -xzf gitleaks.tar.gz")
         os.system("chmod +x gitleaks")
         os.system("sudo mv gitleaks /usr/local/bin/")
-    elif TARGETOS == "Windows":
+    elif TARGETOS == "windows":
         os.system("Invoke-WebRequest -Uri {URL}.exe -OutFile gitleaks.zip")
         os.system("Add-Type -AssemblyName System.IO.Compression.FileSystem")
         os.system("[System.IO.Compression.ZipFile]::ExtractToDirectory(gitleaks.zip, (Get-Location))")
         os.system(f"mkdir {gitleaskWinPath} && move gitleaks.exe {gitleaskWinPath}")
+        addPath()
         
 
 def is_gitleaks_installed():
     try:
         subprocess.run(['gitleaks', '--version'], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         return True
-    except subprocess.CalledProcessError:
+    except:
         return False
 
 if not is_gitleaks_installed():
