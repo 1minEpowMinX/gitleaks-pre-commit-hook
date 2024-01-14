@@ -6,4 +6,9 @@ Install:
 ```sh
 curl -sSL https://raw.githubusercontent.com/1minEpowMinX/gitleaks-pre-commit-hook/main/gitleaks-pre-commit.sh | sh
 ```
-Done! The system will automatically check commits.
+Done! The system will automatically check commits.  
+To disable the gitleaks system, type in the terminal:  
+```sh
+git config hooks.gitleaks false
+```
+**Enjoy It!**
