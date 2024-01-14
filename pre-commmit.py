@@ -7,12 +7,12 @@ import platform
 
 gitleaskWinPath = "C:\Program Files\gitleaks"
 
+
 def addPath():
     current_path = os.environ.get('PATH')
     path_to_add = gitleaskWinPath
     new_path = current_path + ";" + path_to_add
     os.environ['PATH'] = new_path
-
 
 
 def gitleaksInstall():
