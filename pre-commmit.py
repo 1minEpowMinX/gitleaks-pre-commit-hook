@@ -5,6 +5,15 @@ import sys
 import subprocess
 import platform
 
+gitleaskWinPath = "C:\Program Files\gitleaks"
+
+def addPath():
+    current_path = os.environ.get('PATH')
+    path_to_add = gitleaskWinPath
+    new_path = current_path + ";" + path_to_add
+    os.environ['PATH'] = new_path
+
+
 
 def gitleaksInstall():
     TARGETOS = platform.system()
@@ -20,6 +29,8 @@ def gitleaksInstall():
         os.system("Invoke-WebRequest -Uri {URL}.exe -OutFile gitleaks.zip")
         os.system("Add-Type -AssemblyName System.IO.Compression.FileSystem")
         os.system("[System.IO.Compression.ZipFile]::ExtractToDirectory(gitleaks.zip, (Get-Location))")
+        os.system(f"mkdir {gitleaskWinPath} && move gitleaks.exe {gitleaskWinPath}")
+        
 
 def is_gitleaks_installed():
     try:
