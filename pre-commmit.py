@@ -5,12 +5,12 @@ import sys
 import subprocess
 import platform
 
-gitleaskWinPath = "C:\Program Files\gitleaks"
+gitleaksWinPath = "C:\Program Files\gitleaks"
 
 
 def addPath():
     current_path = os.environ.get('PATH')
-    path_to_add = gitleaskWinPath
+    path_to_add = gitleaksWinPath
     new_path = current_path + ";" + path_to_add
     os.environ['PATH'] = new_path
 
@@ -23,15 +23,19 @@ def gitleaksInstall():
 
     if TARGETOS == "linux" or TARGETOS == "darwin":
         os.system(f"curl -sSL {URL}.tar.gz -o gitleaks.tar.gz")
-        os.system("tar -xzf gitleaks.tar.gz")
-        os.system("chmod +x gitleaks")
-        os.system("sudo mv gitleaks /usr/local/bin/")
+        os.system("sudo mkdir gitleaks_temp_directory")
+        os.system("sudo tar -xzf gitleaks.tar.gz -C gitleaks_temp_directory")
+        os.system("sudo chmod +x gitleaks_temp_directory/gitleaks")
+        os.system("sudo mv gitleaks_temp_directory/gitleaks /usr/local/bin/")
+        os.system("sudo rm -r gitleaks_temp_directory")
+        os.system("sudo rm gitleaks.tar.gz")
     elif TARGETOS == "windows":
         os.system("Invoke-WebRequest -Uri {URL}.exe -OutFile gitleaks.zip")
         os.system("Add-Type -AssemblyName System.IO.Compression.FileSystem")
         os.system("[System.IO.Compression.ZipFile]::ExtractToDirectory(gitleaks.zip, (Get-Location))")
-        os.system(f"mkdir {gitleaskWinPath} && move gitleaks.exe {gitleaskWinPath}")
+        os.system(f"mkdir {gitleaksWinPath} && move gitleaks.exe {gitleaksWinPath}")
         addPath()
+        os.system("Remove-Item gitleaks.zip")
         
 
 def is_gitleaks_installed():
