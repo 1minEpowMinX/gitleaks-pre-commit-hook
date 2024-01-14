@@ -24,7 +24,7 @@ def gitleaksInstall():
         os.system(f"curl -sSL {URL}.tar.gz -o gitleaks.tar.gz")
         os.system("tar -xzf gitleaks.tar.gz")
         os.system("chmod +x gitleaks")
-        # os.system("sudo mv gitleaks /usr/local/bin/")
+        os.system("sudo mv gitleaks /usr/local/bin/")
     elif TARGETOS == "Windows":
         os.system("Invoke-WebRequest -Uri {URL}.exe -OutFile gitleaks.zip")
         os.system("Add-Type -AssemblyName System.IO.Compression.FileSystem")
