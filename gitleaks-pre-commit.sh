@@ -5,6 +5,6 @@ sudo chmod +x pre-commit.py
 mv pre-commit.py .git/hooks/pre-commit
 
 # Display success messages
-printf "Installation..."
-printf "The installation was successful!"
-printf "The pre-commit script has been moved to .git/hooks/pre-commit. Enjoy using it!"
+printf "Installation...\n"
+printf "The installation was successful!\n"
+printf "The pre-commit script has been moved to .git/hooks/pre-commit. Enjoy using it!\n"
