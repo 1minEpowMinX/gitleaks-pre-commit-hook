@@ -5,7 +5,7 @@ import sys
 import subprocess
 import platform
 
-gitleaksWinPath = "C:\Program Files\gitleaks"
+gitleaksWinPath = r"D:\gitleaks"
 
 
 def addPath():
@@ -18,8 +18,8 @@ def addPath():
 def gitleaksInstall():
     TARGETOS = platform.system().lower()
     TARGETARCH = "x64"
-    URL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.18.1/gitleaks_8.18.1_{TARGETOS}_{TARGETARCH}"
-
+    URL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.18.1/gitleaks_8.18.1_{
+        TARGETOS}_{TARGETARCH}"
 
     if TARGETOS == "linux" or TARGETOS == "darwin":
         os.system(f"curl -sSL {URL}.tar.gz -o gitleaks.tar.gz")
@@ -30,23 +30,30 @@ def gitleaksInstall():
         os.system("sudo rm -r gitleaks_temp_directory")
         os.system("sudo rm gitleaks.tar.gz")
     elif TARGETOS == "windows":
-        os.system("Invoke-WebRequest -Uri {URL}.exe -OutFile gitleaks.zip")
-        os.system("Add-Type -AssemblyName System.IO.Compression.FileSystem")
-        os.system("[System.IO.Compression.ZipFile]::ExtractToDirectory(gitleaks.zip, (Get-Location))")
-        os.system(f"mkdir {gitleaksWinPath} && move gitleaks.exe {gitleaksWinPath}")
-        addPath()
-        os.system("Remove-Item gitleaks.zip")
-        
+        cmd = "powershell -command"
+        os.system(
+            f'{cmd} "Invoke-WebRequest -Uri {URL}.zip -OutFile D:\gitleaks.zip"')
+        os.system(
+            f'{cmd} "Add-Type -AssemblyName System.IO.Compression.FileSystem"')
+        os.system(f'{cmd} "mkdir {gitleaksWinPath}"')
+        os.system(
+            f'{cmd} "Expand-Archive -Path D:\gitleaks.zip -DestinationPath  {gitleaksWinPath} -Force"')
+        os.system(f'set PATH=%PATH%;{gitleaksWinPath}')
+        os.system(f'{cmd} "Remove-Item D:\gitleaks.zip"')
+
 
 def is_gitleaks_installed():
     try:
-        subprocess.run(['gitleaks', '--version'], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        subprocess.run(['gitleaks', '--version'], check=True,
+                       stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         return True
     except:
         return False
 
+
 if not is_gitleaks_installed():
     gitleaksInstall()
+
 
 def gitleaksEnabled():
     """Determine if the pre-commit hook for gitleaks is enabled."""
