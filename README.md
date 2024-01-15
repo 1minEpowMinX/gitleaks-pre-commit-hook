@@ -3,7 +3,7 @@ A pre-commit hook script with automatic installation of gitleaks depending on th
 # Usage  
 **Navigate to the desired git repository for installation.**  
 Install:  
-**For Windows, use Git Bash**
+**For Windows, use Git Bash!**
 ```sh
 curl -sSL https://raw.githubusercontent.com/1minEpowMinX/gitleaks-pre-commit-hook/main/gitleaks-pre-commit.sh | sh
 ```
