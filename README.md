@@ -1,5 +1,5 @@
 # gitleaks-pre-commit-hook
-A pre-commit hook script with automatic installation of gitleaks depending on the operating system, with the enable option using git config and installation using the "curl pipe sh" method
+A pre-commit hook script with automatic installation of gitleaks depending on the operating system, with the enable option using git config and installation using the "curl pipe sh" method.
 # Usage  
 **Navigate to the desired git repository for installation.**  
 Install:  
