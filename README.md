@@ -21,7 +21,7 @@ If gitleaks is not install, the script will automatically download it for a supp
 | Linux | Windows | Future OS support |
 | ----------- | ----------- | ----------- |
 | Create a temporary directory gitleaks_temp_directory | Creates the D:\gitleaks directory | --- |
-| Unpack the archive and move gitleaks to /usr/local/bin/ | Extracts the archive to the D:\gitleaks directory | --- |
+| Unpack the archive and move gitleaks to /usr/local/bin/ | Extracts the archive to the D:\gitleaks directory and set PATH | --- |
 | Will delete the temporary directory gitleaks_temp_directory and the archive | Deletes the archive | --- |
 
 <br>
