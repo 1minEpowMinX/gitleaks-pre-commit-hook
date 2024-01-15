@@ -8,13 +8,6 @@ import platform
 gitleaksWinPath = r"D:\gitleaks"
 
 
-def addPath():
-    current_path = os.environ.get('PATH')
-    path_to_add = gitleaksWinPath
-    new_path = current_path + ";" + path_to_add
-    os.environ['PATH'] = new_path
-
-
 def gitleaksInstall():
     TARGETOS = platform.system().lower()
     TARGETARCH = "x64"
