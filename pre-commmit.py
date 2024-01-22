@@ -11,8 +11,7 @@ gitleaksWinPath = r"D:\gitleaks"
 def gitleaksInstall():
     TARGETOS = platform.system().lower()
     TARGETARCH = "x64"
-    URL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.18.1/gitleaks_8.18.1_{
-        TARGETOS}_{TARGETARCH}"
+    URL = f"https://github.com/gitleaks/gitleaks/releases/download/v8.18.1/gitleaks_8.18.1_{TARGETOS}_{TARGETARCH}"
 
     if TARGETOS == "linux" or TARGETOS == "darwin":
         os.system(f"curl -sSL {URL}.tar.gz -o gitleaks.tar.gz")
